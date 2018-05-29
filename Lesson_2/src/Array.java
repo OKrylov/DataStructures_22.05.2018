@@ -20,4 +20,6 @@ public interface Array<E extends Comparable> {
 
     void sortInsert();
 
+    Array<E> copy();
+
 }

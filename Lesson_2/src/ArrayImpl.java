@@ -16,6 +16,11 @@ public class ArrayImpl<E extends Object & Comparable> implements Array<E> {
         this.array = (E[]) java.lang.reflect.Array.newInstance(type, size);
     }
 
+    protected ArrayImpl(E[] data, int size) {
+        this.array = data;
+        this.size = size;
+    }
+
     @Override
     public E get(int index) {
         return array[index];
@@ -23,7 +28,7 @@ public class ArrayImpl<E extends Object & Comparable> implements Array<E> {
 
     @Override
     public void insert(E value) {
-            array[size++] = value;
+        array[size++] = value;
     }
 
     @Override
@@ -115,4 +120,8 @@ public class ArrayImpl<E extends Object & Comparable> implements Array<E> {
         array[index] = null;
     }
 
+    @Override
+    public Array<E> copy() {
+        return new ArrayImpl<>(array, size);
+    }
 }

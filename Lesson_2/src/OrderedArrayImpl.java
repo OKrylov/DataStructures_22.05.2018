@@ -6,6 +6,10 @@ public class OrderedArrayImpl<E extends Object & Comparable> extends ArrayImpl<E
         super(size);
     }
 
+    private OrderedArrayImpl(E[] data, int size) {
+        super(data, size);
+    }
+
     @Override
     public void insert(E value) {
         int index;
@@ -42,5 +46,10 @@ public class OrderedArrayImpl<E extends Object & Comparable> extends ArrayImpl<E
             }
         }
         return -1;
+    }
+
+    @Override
+    public Array<E> copy() {
+        return new OrderedArrayImpl<>(array, size);
     }
 }
