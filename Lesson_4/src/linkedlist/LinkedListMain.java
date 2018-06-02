@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.Iterator;
+
 public class LinkedListMain {
 
     public static void main(String[] args) {
@@ -24,15 +26,28 @@ public class LinkedListMain {
         System.out.println("Removing...");
 
 
+        //Итератор с урока
+        while ( iterator.hasNext() ) {
+            iterator.next();
+            iterator.remove();
+        }
 
-//        while ( iterator.hasNext() ) {
-//            iterator.remove();
-//            iterator.next();
-//        }
+
+        java.util.LinkedList<String> list = new java.util.LinkedList<>();
+        list.add("s1");
+        list.add("s2");
+        list.add("s3");
+
+        //Итератор java для LinkedList
+        Iterator<String> iter = list.iterator();
+        while (iter.hasNext()) {
+            iter.next();
+            iter.remove();
+        }
 //
-//        iterator.remove();
 
         System.out.println("After remove:");
         linkedList.display();
+        System.out.println(list);
     }
 }
