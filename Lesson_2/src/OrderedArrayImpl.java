@@ -48,6 +48,30 @@ public class OrderedArrayImpl<E extends Object & Comparable> extends ArrayImpl<E
         return -1;
     }
 
+    public int recBinarySearch(E value) {
+        int low = 0;
+        int high = size - 1;
+        return doRecBinarySeach(value, low, high);
+    }
+
+    private int doRecBinarySeach(E value, int low, int high) {
+        int mid = (low + high) / 2;
+        if (array[mid].equals(value)) {
+            return mid;
+        }
+        else if ( low > high) {
+            return -1;
+        }
+        else {
+            if (value.compareTo(array[mid]) < 0) {
+                return doRecBinarySeach(value, low, mid);
+            }
+            else {
+                return doRecBinarySeach(value, mid + 1, high);
+            }
+        }
+    }
+
     @Override
     public Array<E> copy() {
         return new OrderedArrayImpl<>(array, size);
