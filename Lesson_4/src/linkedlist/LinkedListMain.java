@@ -20,17 +20,17 @@ public class LinkedListMain {
 //        System.out.println("Contains Anna: " + linkedList.contains(anna));
         linkedList.display();
 
-        LinkIterator iterator = linkedList.iterator();
-        LinkIterator iterator2 = linkedList.iterator();
+//        LinkIterator iterator = linkedList.iterator();
+//        LinkIterator iterator2 = linkedList.iterator();
 
         System.out.println("Removing...");
 
 
         //Итератор с урока
-        while ( iterator.hasNext() ) {
-            iterator.next();
-            iterator.remove();
-        }
+//        while ( iterator.hasNext() ) {
+//            iterator.next();
+//            iterator.remove();
+//        }
 
 
         java.util.LinkedList<String> list = new java.util.LinkedList<>();

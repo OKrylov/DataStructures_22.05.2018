@@ -1,6 +1,8 @@
 package linkedlist;
 
-public interface LinkedList {
+import java.util.Iterator;
+
+public interface LinkedList extends Iterable<Person> {
 
     void insert(Person data);
 
@@ -18,6 +20,6 @@ public interface LinkedList {
 
     int getSize();
 
-    LinkIterator iterator();
+    Iterator<Person> iterator();
 
 }

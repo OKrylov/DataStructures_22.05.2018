@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.util.Iterator;
+
 public class LinkedListImpl implements LinkedList {
 
     protected Node firstElement;
@@ -89,7 +91,7 @@ public class LinkedListImpl implements LinkedList {
     }
 
     @Override
-    public LinkIterator iterator() {
-        return new LinkIterator(this, firstElement);
+    public Iterator<Person> iterator() {
+        return new ExListIterator(this);
     }
 }
