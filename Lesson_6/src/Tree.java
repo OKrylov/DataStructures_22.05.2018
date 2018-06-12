@@ -10,4 +10,6 @@ public interface Tree {
     void displayTree();
 
     public void traverse(TraverseType type);
+
+    boolean isBalanced();
 }

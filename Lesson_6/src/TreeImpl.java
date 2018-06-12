@@ -3,6 +3,11 @@ import java.util.Stack;
 public class TreeImpl implements Tree {
 
     private Node root;
+    private int maxLevel;
+
+    public TreeImpl(int maxLevel) {
+        this.maxLevel = maxLevel;
+    }
 
     @Override
     public void insert(Person value) {
@@ -14,8 +19,9 @@ public class TreeImpl implements Tree {
         } else {
             Node current = root;
             Node parent = current;
-
+            int level = 1;
             do {
+                level++;
                 parent = current;
                 if (key < current.getKey()) {
                     current = current.getLeftChild();
@@ -23,6 +29,9 @@ public class TreeImpl implements Tree {
                     current = current.getRightChild();
                 }
             } while (current != null);
+
+            if (level > maxLevel)
+                return;
 
             if (key < parent.getKey()) {
                 parent.setLeftChild(node);
@@ -218,5 +227,20 @@ public class TreeImpl implements Tree {
             inOrder(node.getLeftChild());
             inOrder(node.getRightChild());
         }
+    }
+    @Override
+    public boolean isBalanced() {
+        return isBalanced(root);
+    }
+
+    private boolean isBalanced(Node node) {
+        return (node == null) ||
+                isBalanced(node.getLeftChild()) &&
+                        isBalanced(node.getRightChild()) &&
+                        Math.abs(height(node.getLeftChild()) - height(node.getRightChild())) <= 1;
+    }
+
+    private int height(Node node) {
+        return node == null ? 0 : 1 + Math.max(height(node.getLeftChild()), height(node.getRightChild()));
     }
 }

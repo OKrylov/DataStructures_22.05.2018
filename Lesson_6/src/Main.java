@@ -1,7 +1,7 @@
 public class Main {
 
     public static void main(String[] args) {
-        Tree theTree = new TreeImpl();
+        Tree theTree = new TreeImpl(100);
         theTree.insert(new Person("Oleg", 25, 60));
         theTree.insert(new Person("Oleg", 25, 25));
         theTree.insert(new Person("Oleg", 25, 66));
