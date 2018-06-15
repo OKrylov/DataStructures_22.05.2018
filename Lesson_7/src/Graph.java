@@ -1,8 +1,4 @@
-import com.sun.javafx.tools.packager.MakeAllParams;
-
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class Graph {
 
@@ -53,8 +49,14 @@ public class Graph {
         }
     }
 
-    //breadth-first search
+
+
     public void bfs(String vertexLabel) {
+        bfs(vertexLabel, null);
+    }
+
+    //breadth-first search
+    private Vertex bfs(String vertexLabel, String finishVertexLabel) {
         Queue<Vertex> queue = new LinkedList<>();
 
         int startIndex = getVertexPosition(vertexLabel);
@@ -63,18 +65,27 @@ public class Graph {
         visit(vertex);
         queue.add(vertex);
 
+
         while (!queue.isEmpty()) {
             vertex = queue.remove();
+
+            if (finishVertexLabel != null && vertex.getLabel().equals(finishVertexLabel)) {
+                return vertex;
+            }
 
             Vertex v = getAdjUnvisitedVertex(vertex);
             while (v != null) {
                 visit(v);
                 queue.add(v);
+                v.setPreviousVertex(vertex);
+
                 v = getAdjUnvisitedVertex(vertex);
             }
         }
 
         resetVertexState();
+
+        return null;
     }
 
     //Depth-first search
@@ -140,5 +151,20 @@ public class Graph {
     private void visit(Vertex currentVertex) {
         displayVertex(currentVertex);
         currentVertex.setWasVisited(true);
+    }
+
+    public String findShortestPath(String startLabel, String finishLabel) {
+        Vertex targetVertex = bfs(startLabel, finishLabel);
+        List<String> labels = new ArrayList<>();
+
+        Vertex currentVertex = targetVertex;
+        while ( currentVertex != null) {
+            labels.add(currentVertex.getLabel());
+            currentVertex = currentVertex.getPreviousVertex();
+        }
+
+        Collections.reverse(labels);
+
+        return String.join(" -> ", labels);
     }
 }
